@@ -1,0 +1,70 @@
+:: HCC IT CTS Imaging Solution
+:: Date: NOV 2024
+:: Made by Eliseo-Duque & Co-Worker
+
+@echo off
+:: Clear screen
+cls
+
+:: set path
+PATH=X:\Windows\System32
+:: fallback
+X:
+
+echo.
+echo _ _ HARD DRIVE CLONING _ _
+echo.
+echo 1. Erase internal drive completeley.
+echo 2. Connect to a network share
+echo 3. Clone image from external drive
+echo 4. Restart the computer
+echo 5. Exit Menu
+echo.
+
+:MENU
+set /p answer= Please make a selection above:
+IF %answer% == 1 ( GOTO ERASE )
+IF %answer% == 2 ( GOTO CONNECT )
+IF %answer% == 3 ( GOTO CLONE )
+IF %answer% == 4 ( GOTO RESTART )
+IF %answer% == 5 ( GOTO EXIT_MENU )
+echo your selection "%answer%" is invalid
+echo.
+GOTO MENU
+
+:ERASE
+:: Run DISKPART inorder to wipe current hard-drive
+echo **WARNING** All data will be erased!
+timeout /t 7        &:: 7 second pause
+
+Diskpart
+List Disk
+Select Disk 0
+Clean
+Exit
+
+GOTO MENU
+
+:CONNECT
+:: Connect to this device using admin credenetials
+:: Server IP has been CENSORED for security reasons
+
+net use z: \\xxx.xxx.xxx.xxx\directory\directory password /user:username /p:no
+echo Shared Drive Z: has been connected
+GOTO MENU
+
+:CLONE
+:: run DISM
+ 
+DISM /apply-ffu /ImageFile=Z:\\<Filename> /ApplyDrive:\\.\PhysicalDrive0
+GOTO MENU
+
+:RESTART
+:: Exit command prompt (Boot into Windows)
+echo Restarting Computer...
+exit
+
+:: Back to command prompt
+:EXIT_MENU
+echo To go back to HD Clone Menu, Type: MENU
+@echo on
