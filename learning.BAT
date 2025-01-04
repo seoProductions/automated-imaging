@@ -149,5 +149,5 @@ if $answer$ == n GOTO Exit
 
 ::::::::::::::::::::::::::::::::::::::::::::
 
-:Exit             &:: Exit is an example of an anchor
+:Exit            
 echo on                 &:: toggle the C:\Users\.... on
