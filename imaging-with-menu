@@ -35,7 +35,7 @@ GOTO MENU
 :ERASE
 :: Run DISKPART inorder to wipe current hard-drive
 echo **WARNING** All data will be erased!
-timeout /t 7        &:: 7 second pause
+ping loopback -w 7000 > null        &:: 7 second pause
 
 Diskpart
 List Disk
