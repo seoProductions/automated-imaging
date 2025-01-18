@@ -29,7 +29,6 @@ echo Shared Drive Z: has been connected
 :: run DISM
  
 DISM /apply-ffu /ImageFile=Z:\\<Filename> /ApplyDrive:\\.\PhysicalDrive0
-GOTO MENU
 
 :: Exit command prompt (Boot into Windows)
 echo Restarting Computer...
